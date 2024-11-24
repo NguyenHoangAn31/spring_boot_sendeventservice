@@ -13,16 +13,10 @@ import org.springframework.stereotype.Service;
 public class EventService {
 
     @Autowired
-    private EmailService emailService;
-
-    @Autowired
     private ApplicationEventPublisher eventPublisher;
 
     public void publishEvent(Feedback feedback) throws MessagingException {
-        CustomEvent customEvent = new CustomEvent(this, feedback.getMessage());
+        CustomEvent customEvent = new CustomEvent(this, feedback);
         eventPublisher.publishEvent(customEvent);
-
-        // Gửi email khi sự kiện được nhận
-        emailService.sendEmail(feedback.getEmail(), "Review feedback", "Thank you "+feedback.getName()+" for your comments");
     }
 }

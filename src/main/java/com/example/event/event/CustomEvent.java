@@ -2,16 +2,17 @@ package com.example.event.event;
 
 import org.springframework.context.ApplicationEvent;
 
+import com.example.event.dto.Feedback;
+
 public class CustomEvent extends ApplicationEvent {
+    private Feedback feedback;
 
-    private String message;
-
-    public CustomEvent(Object source, String message) {
+    public CustomEvent(Object source, Feedback feedback) {
         super(source);
-        this.message = message;
+        this.feedback = feedback;
     }
 
-    public String getMessage() {
-        return message;
+    public Feedback getFeedback() {
+        return feedback;
     }
 }
